@@ -1,103 +1,176 @@
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500&family=Poppins:wght@300;500&family=Raleway:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+:root {
+  --primaryTextColor: #232e35; /* Untuk title atau judul */
+  --secondaryTextColor: #656d72; /* Untuk text biasa seperti paragraph contohnya */
+
+  --borderColor: #f1f1f1;
+  --lineColor: #d9d9d9; /* untuk line di pre-title */
+
+  --primaryBackgroundColor: #fff;
+  --secondaryBackgroundColor: #fbfbfb;
+  --thirdBackgroundColor: #f5f3fe;
+
+  --primaryIconColor: #7e74f1;
+  --primaryIconColorHover: #5d51e8;
+
+  --sectionPadding: 6rem 0;
+
+  --itemBorderRadius: 0.7rem;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins";
   scroll-behavior: smooth;
 }
-.body {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+
+body {
+  font-family: "Roboto", sans-serif;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 strong {
-  color: #232323;
+h6,
+strong {
+  color: var(--primaryTextColor);
 }
+
 p {
-  font-size: 1rem; /* 1 rem = 16px*/
-  line-height: 1.9rem;
+  font-size: 1rem; /* 16 px */
+  line-height: 1.9rem; /*30.4 px */
 }
 
 p,
 span,
 label,
 input,
-li,
-textarea {
-  color: gray;
+textarea,
+li {
+  color: var(--secondaryTextColor);
 }
+
 a {
   text-decoration: none;
 }
+
+/* End Preparation */
+
 .main-container {
   width: 1200px;
   margin: 0 auto;
-  /* background-color: red; */
 }
-@media screen and(max-width:1200px) {
+
+@media screen and (max-width: 1200px) {
   .main-container {
     width: 90%;
   }
 }
 
-/* Logo and Navbar */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
+/* Buttons */
+.btn {
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 1.5px solid var(--borderColor);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
-.nav ul {
-  list-style: none;
-  display: flex;
-  gap: 3rem;
+
+.btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
-.logo {
-  display: flex;
-  justify-content: center;
-  font-weight: 1000;
-  font-size: 32px;
-}
+
 /* Titles */
 .section-title {
   margin: 1rem 0 4rem;
   font-size: 2rem;
 }
+
 .pre-title {
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
-  color: gray;
+  color: var(--secondaryTextColor);
   position: relative;
-}
-.logo a {
-  color: rgb(13, 107, 183);
-}
-.nav ul li {
-  display: flex;
-}
-.nav ul li a {
-  color: skyblue;
+  padding-left: 40px;
+  width: fit-content;
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
-/* Burger */
+.pre-title::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: var(--lineColor);
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+}
+
+/* Layouts */
+.grid-3 {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr; use this first, use code below when its time for explaining responsive design part */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+/* --- Logo and Navigation Menu --- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.logo a {
+  color: var(--primaryTextColor);
+}
+
+/* Navigation Menu */
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+nav ul li a {
+  color: var(--primaryTextColor);
+}
+
+/* Burger - Save for later on video */
 .burger div {
   width: 25px;
   height: 2px;
-  background-color: black;
+  background-color: #000;
   margin: 7px;
   transition: all 0.3s;
   z-index: 99;
 }
+
 .burger {
   display: none;
   z-index: 99;
-  top: 33px;
-  right: 33px;
   position: fixed;
+  top: 33px;
+  right: 35px;
 }
 
 /* Hero Section */
@@ -105,192 +178,217 @@ a {
   height: 720px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* We're not going to use automatic template columns, because we need to know when the columns is go below. So we can exchange the order of the element */
   align-items: center;
 }
+
 .hero-name {
   font-size: 3rem;
   font-weight: 700;
   margin: 0.5rem 0 1rem;
 }
 
-/* .hero-right img:hover {
-  transform: scale(1.1);
-  transition: ease-in-out 0.2s;
-} */
 .hero-name span {
-  color: steelblue;
+  color: var(--primaryIconColor) !important;
 }
+
 .hero-right img {
   width: 90%;
 }
+
 .hero-right {
   display: flex;
   justify-content: center;
 }
-.card a {
-  display: inline-block;
-  color: azure;
-  width: auto;
-  padding: 15px;
-  background-color: rgb(5, 72, 117);
-  border-radius: 10px;
-  transition: 0.3s;
-}
 
-.card a:hover {
-  transform: scale(1.1);
-  color: rgba(125, 222, 225, 0.986);
-}
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-}
-
+/* Services Section */
 #services {
-  padding: 6rem 0;
-  background-color: #fbfbfb;
-  display: flex;
-  padding: 6rem 0;
+  background-color: var(--secondaryBackgroundColor);
+  padding: var(--sectionPadding);
 }
+
 .services .pre-title {
   margin: 0 auto;
-  text-align: center;
 }
+
 .services-title {
   text-align: center;
 }
+
 .service {
   padding: 3rem 2rem;
   text-align: center;
-  border-radius: 2rem;
-  background: whitesmoke;
-  transition: 0.3s;
+  background: var(--primaryBackgroundColor);
+  border-radius: var(--itemBorderRadius);
 }
-.service:hover {
-  transform: scale(1.04);
-  cursor: pointer;
-}
+
 .service h4 {
   margin: 1.5rem 0;
-  /* font-weight: 500; */
+  font-weight: 500;
   font-size: 1.05rem;
 }
+
 .service-icon {
-  background-color: rgba(7, 77, 139, 0.137);
+  background: var(--thirdBackgroundColor);
   width: fit-content;
   margin: 0 auto;
   padding: 1rem 1.3rem;
   border-radius: 0.5rem;
 }
-.portofolio {
-  font-size: 1.05rem;
-  overflow: hidden;
-  border: 1px solid #f1f1f1;
+
+.service-icon svg {
+  fill: var(--primaryIconColor);
 }
 
-/* Portofolio  */
-#portofolios {
-  padding: 6rem 0;
+.service-icon {
+  background: var(--thirdBackgroundColor);
+  width: fit-content;
+  margin: 0 auto;
+  padding: 1rem 1.3rem;
+  border-radius: 0.5rem;
 }
-.portofolio {
-  border-radius: 0.7rem;
+
+.service-icon svg {
+  fill: var(--primaryIconColor);
 }
-.portofolio-cover {
+
+/* Portfolios */
+#portfolios {
+  padding: var(--sectionPadding);
+}
+
+.portfolio {
+  border-radius: var(--itemBorderRadius);
+  overflow: hidden; /* supaya gambar yang diatas itu dia ngikut border radiusnya, karena yang dikasih border radius disini adalah div portfolio ini */
+  border: 1px solid var(--borderColor);
+}
+
+.portfolio-cover {
   height: 250px;
 }
-.portofolio-cover img {
-  height: 100%;
+
+.portfolio img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-.portofolio-info {
+
+.portfolio-info {
   padding: 2rem 1.5rem;
 }
-.portofolio-title {
+
+.portfolio-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
-.portofolio h4 {
-  font-size: 1.25rem;
+
+.portfolio h4 {
+  font-weight: 500;
+  font-size: 1.05rem;
 }
-.portofolio-tags {
+
+.portfolio-title a svg:hover {
+  fill: var(--primaryIconColor);
+}
+
+.portfolio-title a svg {
+  transition: 0.2s ease-in-out;
+}
+
+.portfolio-tags {
   display: flex;
-  margin: 1rem 0;
   gap: 1rem;
+  margin: 1rem 0;
 }
-.portofolio-tags .ci {
-  transition: 0.2s;
-}
-.portofolio-tags .ci:hover {
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
-  transform: scale(1.1);
-}
-.portofolio-tags div {
-  border: 1px solid #f1f1f1;
+
+.portfolio-tags div {
+  font-size: 0.9rem;
+  border: 1px solid var(--borderColor);
   padding: 0.4rem 1rem;
-  color: #c6afaf;
+  color: var(--secondaryTextColor);
 }
-/* Skills Education */
+
+.portfolio-tags div {
+  font-size: 0.9rem;
+  border: 1px solid var(--borderColor);
+  padding: 0.4rem 1rem;
+  color: var(--secondaryTextColor);
+}
+
+/* Skills and Education */
 #skills {
-  padding: 6rem 0;
-  background-color: #fbfbfb;
+  padding: var(--sectionPadding);
+  background: var(--secondaryBackgroundColor);
 }
+
 .skills-grid {
   display: grid;
+  /* grid-template-columns: 40% 60%; */
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 4rem;
+  gap: 3rem;
 }
+
 .education {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
+
 .education .line {
   padding: 0 0.7rem;
 }
+
 .education .line div {
   width: 2px;
   height: 100%;
-  background-color: #f1f1f1;
+  background: var(--borderColor);
   position: relative;
 }
+
 .education-info p {
-  margin: 0.6rem 0rem 1.4rem;
+  margin: 0.6rem 0 1.4rem;
 }
+
 .education-years {
   margin-bottom: 3rem;
 }
+
+/* The dot on the line */
 .education .line div:before {
   content: "";
   width: 15px;
   height: 15px;
-  background-color: #f1f1f1;
+  background: var(--borderColor);
   border-radius: 50%;
   position: absolute;
-  left: -5px;
+  left: -6px;
 }
+
+/* Right side of Skills */
 .skills-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 1.5rem;
 }
+
 .skills-right ul {
   line-height: 2rem;
-
   padding: 0 1rem;
 }
+
 /* Contact Section */
 #contact {
-  padding: 6rem 0;
+  padding: var(--sectionPadding);
 }
+
 .contact {
   display: grid;
+  /* grid-template-columns: 1fr 1fr; */
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 3rem;
 }
+
 .contact-form div {
   margin-bottom: 1.4rem;
 }
@@ -300,66 +398,83 @@ a {
   width: 100%;
   padding: 0.75rem 1.3rem;
   font-family: "Roboto", sans-serif;
-  background-color: #fbfbfb;
-  border: 1px solid #f1f1f1;
+  background: var(--secondaryBackgroundColor);
+  border: 1px solid var(--borderColor);
   border-radius: 3px;
   resize: none;
 }
+
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: #9d9fa1;
 }
+
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
   border: 1px solid #7d7d7d;
 }
+
 .btn-submit {
   width: 100%;
   padding: 0.75rem 1.3rem;
-  background-color: #7374f1;
-  color: white;
+  background-color: var(--primaryIconColor);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
 }
+
 .btn-submit:hover {
-  background-color: #5d51e8;
+  background-color: var(--primaryIconColorHover);
 }
-.contact-item-icon {
-  background-color: #f5f3fe;
-  width: 53px;
-  height: 53px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 9px;
-}
+
+/* Contact Section - Right Side */
 .contact-item {
   display: flex;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
-.contact-item-icon svg {
-  fill: #7374f1;
+
+.contact-item-icon {
+  background: var(--thirdBackgroundColor);
+  /* padding: 0.8rem 1rem; */
+  width: 53px;
+  height: 53px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.contact-item-icon svg {
+  fill: var(--primaryIconColor);
+}
+
 .contact-item-detail h4 {
   margin-bottom: 0.6rem;
 }
-/* Footer */
+
+/* Footer Section */
 footer {
   padding: 4rem 0;
-  background-color: #fbfbfb;
+  background: var(--secondaryBackgroundColor);
   text-align: center;
 }
+
 .footer-icons {
   margin-bottom: 1rem;
 }
+
 .footer-icons a {
   margin: 0 0.5rem;
 }
-.footer-icons svg{
+
+.footer-icons svg {
   fill: #3e3f40;
 }
-.footer-icons a:hover svg{
+
+.footer-icons a:hover svg {
   fill: #000;
 }
